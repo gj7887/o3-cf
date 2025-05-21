@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VLESS Proxy Configuration</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>VLESS Proxy Configuration</h1>
+        <form id="configForm">
+            <label for="userID">User ID (UUID):</label>
+            <input type="text" id="userID" name="userID" required>
+
+            <label for="proxyIP">Proxy Server IP:</label>
+            <input type="text" id="proxyIP" name="proxyIP" required>
+
+            <label for="socks5">SOCKS5 Proxy Address:</label>
+            <input type="text" id="socks5" name="socks5">
+
+            <label for="socks5Relay">SOCKS5 Relay Mode:</label>
+            <select id="socks5Relay" name="socks5Relay">
+                <option value="false">False</option>
+                <option value="true">True</option>
+            </select>
+
+            <button type="submit">Generate Configuration</button>
+        </form>
+
+        <div id="status"></div>
+    </div>
+
+    <script>
+        document.getElementById('configForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const userID = document.getElementById('userID').value;
+            const proxyIP = document.getElementById('proxyIP').value;
+            const socks5 = document.getElementById('socks5').value;
+            const socks5Relay = document.getElementById('socks5Relay').value;
+
+            const response = await fetch('/generate-config', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ userID, proxyIP, socks5, socks5Relay }),
+            });
+
+            const result = await response.json();
+            document.getElementById('status').innerText = result.message;
+        });
+    </script>
+</body>
+</html>

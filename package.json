@@ -1,0 +1,26 @@
+{
+  "name": "cf-vless-proxy",
+  "version": "1.0.0",
+  "description": "A Cloudflare Worker-based VLESS Proxy with WebSocket Transport",
+  "main": "src/worker.js",
+  "scripts": {
+    "build": "wrangler build",
+    "deploy": "wrangler publish",
+    "dev": "wrangler dev"
+  },
+  "dependencies": {
+    "@cloudflare/workers-types": "^3.0.0"
+  },
+  "devDependencies": {
+    "wrangler": "^2.0.0"
+  },
+  "keywords": [
+    "cloudflare",
+    "workers",
+    "vless",
+    "proxy",
+    "websocket"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}

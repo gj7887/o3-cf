@@ -1,0 +1,22 @@
+name = "cf-vless-proxy"
+type = "javascript"
+
+account_id = "your_account_id"
+workers_dev = true
+compatibility_date = "2023-10-01"
+
+[env.production]
+workers_dev = false
+compatibility_date = "2023-10-01"
+route = "your_domain/*"
+zone_id = "your_zone_id"
+
+[build]
+command = "npm install && npm run build"
+
+[triggers]
+crons = ["0 */6 * * *"]  # Example cron trigger for every 6 hours
+
+[env.staging]
+workers_dev = true
+compatibility_date = "2023-10-01"
